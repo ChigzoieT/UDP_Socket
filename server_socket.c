@@ -36,7 +36,6 @@ int main(int argc, char *argv[]) {
 
     while (1) {
         clnt_adr_sz = sizeof(clnt_adr);
-        // Use recvfrom and sendto to handle client address
         str_len = recvfrom(ser_sock, message, BUF_SIZE, 0, (struct sockaddr *)&clnt_adr, &clnt_adr_sz);
         sendto(ser_sock, message, str_len, 0, (struct sockaddr *)&clnt_adr, clnt_adr_sz);
     }
