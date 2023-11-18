@@ -5,7 +5,7 @@
 #include <arpa/inet.h>
 #include <unistd.h> 
 
-#define BUF_SIZE 10
+#define BUF_SIZE 256
 
 
 void error_handling(char *message);
@@ -15,6 +15,7 @@ void error_handling(char *message);
 int main(int argc, char *argv[]) {
     int ser_sock;
     char message[BUF_SIZE];
+    char data[BUF_SIZE];
     int str_len;
     struct sockaddr_in ser_adr, clnt_adr; 
     socklen_t clnt_adr_sz;
@@ -37,6 +38,9 @@ int main(int argc, char *argv[]) {
     while (1) {
         clnt_adr_sz = sizeof(clnt_adr);
         str_len = recvfrom(ser_sock, message, BUF_SIZE, 0, (struct sockaddr *)&clnt_adr, &clnt_adr_sz);
+         strcpy(data, "Client's message is:");
+        strcat(data, message);
+        fputs(data, stdout);
         sendto(ser_sock, message, str_len, 0, (struct sockaddr *)&clnt_adr, clnt_adr_sz);
     }
 
