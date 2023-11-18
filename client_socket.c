@@ -9,15 +9,11 @@
 
 void error_handling(char *message);
 
-int main(int argc, char *argv[]) {
+int main() {
     int sock;
     char message[BUF_SIZE];
     int str_len;
     struct sockaddr_in ser_adr, from_adr;
-
-    if (argc != 1) {
-        exit(1);
-    }
 
     sock = socket(AF_INET, SOCK_DGRAM, 0);
     if (sock == -1)
@@ -25,10 +21,8 @@ int main(int argc, char *argv[]) {
 
     memset(&ser_adr, 0, sizeof(ser_adr));
     ser_adr.sin_family = AF_INET;
-    ser_adr.sin_addr.s_addr = inet_addr(hostname);
-    ser_adr.sin_port = htons(atoi(port number));
-
-    // Removed connect() as it's not necessary for UDP
+    ser_adr.sin_addr.s_addr = inet_addr("hostname");
+    ser_adr.sin_port = htons(atoi("port number"));
 
     while (1) {
         fputs("Input message (Q to quit): ", stdout);
@@ -39,7 +33,6 @@ int main(int argc, char *argv[]) {
 
         sendto(sock, message, strlen(message), 0, (struct sockaddr *)&ser_adr, sizeof(ser_adr));
 
-        // Use recvfrom to receive data and obtain the sender's address
         socklen_t adr_sz = sizeof(from_adr);
         str_len = recvfrom(sock, message, BUF_SIZE - 1, 0, (struct sockaddr *)&from_adr, &adr_sz);
         message[str_len] = '\0';  // Null-terminate the received message
