@@ -1,0 +1,15 @@
+This code implements the client and server connection in C.
+The server is the host in the communication, requiring an IP address for communication with the client and a port number which will signify the channel the data will pass through.
+there are many port numbers, the most popula r being port 8080(HTTP) which signfies the port number for web traffic.
+so in the codes above to test in on a machine.
+use the previous example to c get your public IP and host.
+or for testing purposes use local host  127.0.0.1 on port 8080;.
+local host is an IP you can use within a PC to communicate between sockets as long it is not mapped to another server connectiion.
+
+Note: it is a UDP socket, what is the meaning User Datagram Protocol
+there are two major protocols TCP and UDP.
+the former works works to maintain credibility, the former does not work to maintain credibility.
+in the first data cannot be lost as long as there is server disconnection durning communication, the latter data could be lost(but data lost could prove negligible).
+The first is used for communications that require sensitive information, the second informations that are not so sensitive.
+in the course for maintaining credibilty TCp loses a lil speed to UDP, so they both have thier ups and downs.
+there are other protocols, but i might not visit them during the course of this journey. 
