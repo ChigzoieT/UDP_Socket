@@ -19,9 +19,7 @@ int main(int argc, char *argv[]) {
     struct sockaddr_in ser_adr, clnt_adr; 
     socklen_t clnt_adr_sz;
 
-    if (argc != 1) {
-        exit(1);
-    }
+   
 
     ser_sock = socket(AF_INET, SOCK_DGRAM, 0);
     if (ser_sock == -1)
@@ -31,7 +29,7 @@ int main(int argc, char *argv[]) {
     ser_adr.sin_family = AF_INET;
    if (inet_pton(AF_INET, "hostname", &ser_adr.sin_addr) <= 0)
     error_handling("inet_pton() error");
-    ser_adr.sin_port = htons(atoi(port no));
+    ser_adr.sin_port = htons(atoi("port no"));
 
     if (bind(ser_sock, (struct sockaddr *)&ser_adr, sizeof(ser_adr)) == -1)
         error_handling("bind() error");
